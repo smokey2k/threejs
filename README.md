@@ -1,4 +1,4 @@
 [# Quarto in 3D](https://datas2k.github.io/threejs/)
 
-![Quarto3D](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![Quarto3D](https://github.com/datas2k/threejs/blob/main/assets/screenshot.png "Quarto3D")
 
