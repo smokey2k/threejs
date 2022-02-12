@@ -21,6 +21,8 @@ export function main() {
         'kocka_magas_lukas',
         'kocka_magas_teli'
     ]
+
+    
     
     IMG.loadSTL(`${modelPath}board.stl`,"cbinary",1,0,1);
 
