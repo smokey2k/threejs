@@ -25,8 +25,8 @@ var statsStatus;
     //renderer.domElement.style.cssText = 'position:absolute;top:0px;left:0px;';
     container.appendChild( renderer.domElement );
     myStats();
-    window.addEventListener( 'resize', onWindowResize );
-    
+    window.addEventListener( 'resize', Resize );
+    window.addEventListener("orientationchange", Resize);
 }
 
 function myHelpers() {
@@ -42,23 +42,24 @@ function myStats() {
 }
 
 function myRenderer() {
-    myWidth = container.offsetWidth-(border*2);
-    myHeight = container.offsetHeight-(border*2);
+    myWidth = container.offsetWidth;
+    myHeight = container.offsetHeight;
     renderer = new THREE.WebGLRenderer( { antialias: true } );
     renderer.setPixelRatio( myWidth / myHeight ); //window.devicePixelRatio
     renderer.setSize(myWidth, myHeight);
+    //renderer.setSize( window.innerWidth, window.innerHeight );
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.shadowMap.enabled = true;
 }
 
 function myCamera(){
-    //myWidth = container.offsetWidth-(border*2);
-    //myHeight = container.offsetHeight-(border*2);
+    //myWidth = container.offsetWidth;
+    //myHeight = container.offsetHeight;
     myWidth = container.offsetWidth;
     myHeight = container.offsetHeight;
     camera = new THREE.PerspectiveCamera( 35, myWidth / myHeight, 1, 1000 );
     //camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 1, 15 );
-    camera.position.set( 1,3, 4 );
+    camera.position.set( 1,4, 6 );
     cameraTarget = new THREE.Vector3( 1, -0.1, 1 );
 }
 
@@ -106,17 +107,21 @@ function addShadowedLight( x, y, z, color, intensity ) {
     directionalLight.shadow.bias = - 0.002;
 }
 
-function onWindowResize() {
-    myWidth = container.offsetWidth-(border*2);
-    myHeight = container.offsetHeight-(border*2);
-    renderer.setSize(myWidth,myHeight);
-    renderer.setSize(myWidth,myHeight);
-    camera.aspect = myWidth / myHeight; //window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    
-    
-    render();
+function Resize() {
+    myWidth = container.offsetWidth; // offsetWidth
+    myHeight = container.offsetHeight; // offsetHeight
+    if (container.width !== myWidth || container.height !== myHeight) {
+        
+        renderer.setPixelRatio( myWidth / myHeight );
+        renderer.setSize(myWidth, myHeight);//, false
+        //renderer.setSize( window.innerWidth, window.innerHeight );
+        camera.aspect = myWidth / myHeight;
+        camera.updateProjectionMatrix();
+      }
+      
+      render();
 }
+
 
 export function animate() {
     requestAnimationFrame( animate );

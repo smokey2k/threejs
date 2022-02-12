@@ -46,8 +46,11 @@ function onPointerMove( event ) {
         selectedObject.material.color.setHex( oldColor );
         selectedObject = null;
     }
+    var myWidth = INIT.myWidth;
+    var myHeight = INIT.myHeight;
     pointer.x = ( event.clientX /  window.innerWidth) * 2 - 1; //window.innerWidth INIT.myWidth
     pointer.y =  - ( event.clientY / window.innerHeight ) * 2 + 1; //window.innerHeight INIT.myHeight
+    //INIT.camera.aspect = INIT.myWidth / INIT.myHeight;
     raycaster.setFromCamera( pointer, INIT.camera );
     const intersects = raycaster.intersectObject( cubes, true );
     if ( intersects.length > 0 ) {
