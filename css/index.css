@@ -2,12 +2,11 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    
+    font-family: Arial;
 }
 html {
     width: 100%;
     height: 100%;
-    font-family: 'Poppins';
 }
 
 body {
@@ -33,7 +32,7 @@ header ul {
     flex-flow: row wrap;
     list-style: none;
     overflow: auto;
-    padding: 0.5ch;
+    justify-content: center;
 }
 
 footer {
@@ -46,8 +45,9 @@ footer {
 footer ul {
     display: flex;
     flex-flow: row wrap;
-    height: fit-content;
-    padding: 0.5ch;
+    justify-content: center;
+    list-style: none;
+    overflow: auto;
 }
 
 header li, footer li {
@@ -103,10 +103,12 @@ header li, footer li {
     margin: 2ch;
 }
 
-
-
 .main-left, .main-right {
     position: relative;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .main-left ul, .main-right ul {
     display: flex;
@@ -114,8 +116,15 @@ header li, footer li {
     overflow: auto;
 }
 
-
+/*
+.main, .main-left, .main-right {
+    border: 1px solid red;
+}
+*/
 @media (orientation: landscape) {
+    * {
+        font-size: 1vw;
+    }
     .main {
         flex-flow: row;
     }
@@ -123,6 +132,8 @@ header li, footer li {
         flex-flow: column;
         min-width: 16ch;
         width: fit-content;
+        min-height: 96%;
+        height: 96%;
     }
     .webgl-container {
         flex:1;
@@ -130,6 +141,9 @@ header li, footer li {
 }
   
   @media (orientation: portrait) {
+    * {
+        font-size: 1.5vh;
+    }
     .main {
         flex-flow: column;
     }
@@ -137,6 +151,9 @@ header li, footer li {
         flex-flow: row;
         min-width: 98%;
         width: 98%;
+        min-height: 98%;
+        height: 98%;
+
     }
     .webgl-container {
         flex: auto;

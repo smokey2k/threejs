@@ -33,7 +33,7 @@ export function main() {
         IMG.loadSTL(`${modelPath}${figures[i]}.stl`,"cbinary",2.3,0.2,0.3*i);
     }
 
-    RNDCUBES.myCubes();
+    //RNDCUBES.myCubes();
 }
 
 

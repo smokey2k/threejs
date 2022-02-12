@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Album>
+    <Header>
+        <Application Name="GLC-Player" Version="2.1"/>
+    </Header>
+    <Root>
+        <Model AFileName="C:/Users/s2k/Desktop/GitHub/threejs/assets/models/quarto/kocka_alacsony_teli.stl" RFileName="kocka_alacsony_teli.stl">
+            <Camera Angle="35">
+                <Eye x="35.5807" y="-98.4193" z="42.4193"/>
+                <Target x="67" y="-67" z="11"/>
+                <Up x="0.408248" y="0.408248" z="0.816497"/>
+                <DefaultUp x="0" y="0" z="1"/>
+            </Camera>
+            <Materials size="0"/>
+            <InvisibleInstances size="0"/>
+            <Shaders size="0"/>
+        </Model>
+        <Model AFileName="C:/Users/s2k/Desktop/GitHub/threejs/assets/models/quarto/kocka_magas_lukas.stl" RFileName="kocka_magas_lukas.stl">
+            <Camera Angle="35">
+                <Eye x="-44.4335" y="-10.4335" z="66.4335"/>
+                <Target x="0" y="34" z="22"/>
+                <Up x="0.408248" y="0.408248" z="0.816497"/>
+                <DefaultUp x="0" y="0" z="1"/>
+            </Camera>
+            <Materials size="0"/>
+            <InvisibleInstances size="0"/>
+            <Shaders size="0"/>
+        </Model>
+        <Model AFileName="C:/Users/s2k/Desktop/GitHub/threejs/assets/models/quarto/kocka_magas_teli.stl" RFileName="kocka_magas_teli.stl">
+            <Camera Angle="35">
+                <Eye x="-44.4335" y="-44.4335" z="66.4335"/>
+                <Target x="0" y="0" z="22"/>
+                <Up x="0.408248" y="0.408248" z="0.816497"/>
+                <DefaultUp x="0" y="0" z="1"/>
+            </Camera>
+            <Materials size="0"/>
+            <InvisibleInstances size="0"/>
+            <Shaders size="0"/>
+        </Model>
+        <Model AFileName="C:/Users/s2k/Desktop/GitHub/threejs/assets/models/quarto/board.stl" RFileName="board.stl">
+            <Camera Angle="35">
+                <Eye x="-233.425" y="-233.425" z="233.425"/>
+                <Target x="0" y="0" z="0"/>
+                <Up x="0.408248" y="0.408248" z="0.816497"/>
+                <DefaultUp x="0" y="0" z="1"/>
+            </Camera>
+            <Materials size="0"/>
+            <InvisibleInstances size="0"/>
+            <Shaders size="0"/>
+        </Model>
+        <Model AFileName="C:/Users/s2k/Desktop/GitHub/threejs/assets/models/quarto/kerek_alacsony_lukas.stl" RFileName="kerek_alacsony_lukas.stl">
+            <Camera Angle="35">
+                <Eye x="-12.3304" y="-118.33" z="46.3304"/>
+                <Target x="23" y="-83" z="11"/>
+                <Up x="0.408248" y="0.408248" z="0.816497"/>
+                <DefaultUp x="0" y="0" z="1"/>
+            </Camera>
+            <Materials size="0"/>
+            <InvisibleInstances size="0"/>
+            <Shaders size="0"/>
+        </Model>
+        <Model AFileName="C:/Users/s2k/Desktop/GitHub/threejs/assets/models/quarto/kerek_alacsony_teli.stl" RFileName="kerek_alacsony_teli.stl">
+            <Camera Angle="35">
+                <Eye x="-12.3304" y="-102.33" z="46.3304"/>
+                <Target x="23" y="-67" z="11"/>
+                <Up x="0.408248" y="0.408248" z="0.816497"/>
+                <DefaultUp x="0" y="0" z="1"/>
+            </Camera>
+            <Materials size="0"/>
+            <InvisibleInstances size="0"/>
+            <Shaders size="0"/>
+        </Model>
+        <Model AFileName="C:/Users/s2k/Desktop/GitHub/threejs/assets/models/quarto/kerek_magas_lukas.stl" RFileName="kerek_magas_lukas.stl">
+            <Camera Angle="35">
+                <Eye x="-24.2801" y="2.71989" z="69.2801"/>
+                <Target x="23" y="50" z="22"/>
+                <Up x="0.408248" y="0.408248" z="0.816497"/>
+                <DefaultUp x="0" y="0" z="1"/>
+            </Camera>
+            <Materials size="0"/>
+            <InvisibleInstances size="0"/>
+            <Shaders size="0"/>
+        </Model>
+        <Model AFileName="C:/Users/s2k/Desktop/GitHub/threejs/assets/models/quarto/kerek_magas_teli.stl" RFileName="kerek_magas_teli.stl">
+            <Camera Angle="35">
+                <Eye x="-24.2801" y="-70.2801" z="69.2801"/>
+                <Target x="23" y="-23" z="22"/>
+                <Up x="0.408248" y="0.408248" z="0.816497"/>
+                <DefaultUp x="0" y="0" z="1"/>
+            </Camera>
+            <Materials size="0"/>
+            <InvisibleInstances size="0"/>
+            <Shaders size="0"/>
+        </Model>
+        <Model AFileName="C:/Users/s2k/Desktop/GitHub/threejs/assets/models/quarto/kocka_alacsony_lukas.stl" RFileName="kocka_alacsony_lukas.stl">
+            <Camera Angle="35">
+                <Eye x="35.5807" y="-54.4193" z="42.4193"/>
+                <Target x="67" y="-23" z="11"/>
+                <Up x="0.408248" y="0.408248" z="0.816497"/>
+                <DefaultUp x="0" y="0" z="1"/>
+            </Camera>
+            <Materials size="0"/>
+            <InvisibleInstances size="0"/>
+            <Shaders size="0"/>
+        </Model>
+    </Root>
+</Album>
