@@ -4,12 +4,9 @@ import * as INIT from './init.js';
 var cubes, geom
 
 var range = 1
-var selectedObject = null;
-var oldColor = 0;
 
 const raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
-
 
 export function myCubes() {
     geom = new THREE.BoxGeometry( 0.1, 0.1, 0.1 );
@@ -32,36 +29,11 @@ export function myCubes() {
         ).multiplyScalar( 0.01 * Math.PI );
         
         cube.rotation.set(scalarTest.x,scalarTest.y,scalarTest.z);
-        
+
         cube.grayness = grayness; // *** NOTE THIS
         cubes.add( cube );
-
     }
-    document.addEventListener( 'pointermove', onPointerMove );
+    return cubes;
 }
 
 
-function onPointerMove( event ) {
-    if ( selectedObject ) {
-        selectedObject.material.color.setHex( oldColor );
-        selectedObject = null;
-    }
-    var myWidth = INIT.myWidth;
-    var myHeight = INIT.myHeight;
-    pointer.x = ( event.clientX /  window.innerWidth) * 2 - 1; //window.innerWidth INIT.myWidth
-    pointer.y =  - ( event.clientY / window.innerHeight ) * 2 + 1; //window.innerHeight INIT.myHeight
-    //INIT.camera.aspect = INIT.myWidth / INIT.myHeight;
-    raycaster.setFromCamera( pointer, INIT.camera );
-    const intersects = raycaster.intersectObject( cubes, true );
-    if ( intersects.length > 0 ) {
-        const res = intersects.filter( function ( res ) {
-            return res && res.object;
-        } )[ 0 ];
-        if ( res && res.object ) {
-            selectedObject = res.object;
-            oldColor = selectedObject.material.color.getHex();
-            selectedObject.material.color.set( '#FFFF00' );
-        }
-    }
-
-}

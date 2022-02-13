@@ -1,0 +1,39 @@
+.main {
+    position: relative;
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+    flex: auto;
+    overflow: auto;
+}
+.main li {
+    min-width: fit-content;
+    margin: 0.6ch;
+}
+.main-left, .main-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+}
+.main-left ul, .main-right ul {
+    display: flex;
+    list-style: none;
+    overflow: auto;
+}
+.webgl-container {
+    transition: none;
+    position: relative;
+    top: 0;
+    left: 0;
+    background-color: black;
+    overflow: hidden;
+    display: block;
+    border-radius: 1ch;
+    -webkit-box-shadow: 1px 1px 20px 0 #000000;
+    -moz-box-shadow: 1px 1px 20px 0 #000000;
+    box-shadow: 1px 1px 20px 0 #000000;
+    border: solid #000000 1px;
+    margin:2vh;
+}

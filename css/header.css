@@ -1,0 +1,19 @@
+header {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-flow: row;
+}
+header ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 1vh;
+}
+header li { 
+    width: fit-content;
+    margin: 0.5ch;
+}
+header ul { flex-flow: row wrap-reverse; }
+
