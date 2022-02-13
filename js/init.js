@@ -3,35 +3,35 @@ import Stats from './three/jsm/libs/stats.module.js';
 import { OrbitControls } from './three/jsm/controls/OrbitControls.js'
 import * as QUARTO from './quarto_main.js';
 
-export var  stats1,stats2,camera, cameraTarget, scene,
-            renderer, controls,myWidth,myHeight, canvasBounds
-export const container = document.getElementsByClassName('webgl-container')[0];
-let border = +getComputedStyle(container).borderTopWidth.slice(0, -2)
+export var  stats1,stats2,camera, scene,cameraTarget,renderer, controls,myWidth,myHeight, canvasBounds
+
+const container = document.getElementsByClassName('main-mid')[0];
+const canvas = document.getElementsByClassName('webgl-container')[0];
+
+
+
+//myInput.onclick = QUARTO.webglInput();
+
+
 var oldCanvasWidth;
+
 
 
 
 export function init() {
 var statsStatus;
-    
-myCamera();
     myScene()
-    myGround();
-    myLights();
+    myCamera();
     myControls();
-    myHelpers();
+   
+    //myGround();
+    myLights();
+    
+    //myHelpers();
     myRenderer();
     QUARTO.main();
-    container.appendChild( renderer.domElement );
+    canvas.appendChild( renderer.domElement );
 //    myStats();
-    window.addEventListener( 'resize', Resize );
-    window.addEventListener('orientationchange',(event) => {    
-        Resize();
-        orientationchange(event);    
-   });
-  
-
-}
 
 function myHelpers() {
     scene.add(new THREE.AxesHelper(300));
@@ -42,7 +42,7 @@ function myStats() {
     stats1.showPanel(0);
     stats1.domElement.style.cssText = 'position:absolute;top:0px;left:0px;';
     //stats.classList.add("stats");
-    container.appendChild( stats1.domElement );
+    canvas.appendChild( stats1.domElement );
 }
 
 function myRenderer() {
@@ -55,47 +55,70 @@ function myRenderer() {
     //renderer.setSize( window.innerWidth, window.innerHeight );
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.shadowMap.enabled = true;
-    
+
+    //renderer.domElement.addEventListener("click", onclick, true);
+    renderer.domElement.addEventListener( 'resize', Resize,false ); //window renderer.domElement
+    renderer.domElement.addEventListener('orientationchange',(event) => {    
+        Resize();
+        orientationchange(event);    
+   });
 }
 
-function myCamera(){
-    //myWidth = container.offsetWidth;
-    //myHeight = container.offsetHeight;
-    myWidth = container.offsetWidth;
-    myHeight = container.offsetHeight;
-    camera = new THREE.PerspectiveCamera( 35, myWidth / myHeight, 1, 1000 );
-    //camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 1, 15 );
-    /*
-    if (window.innerWidth < 500) {
-        camera.position.set( 1,10, 1.15 );
-    } else {
-        camera.position.set( 1,5, 1.15 );
-    }
-    */
-    camera.position.set( 1,4, 3 );
-    cameraTarget = new THREE.Vector3(1, 0, 1 );
-    camera.lookAt( cameraTarget );
-    
-    
+
 }
+
+
 
 function myScene() {
     scene = new THREE.Scene();
-    scene.background = new THREE.Color( 0x72645b );
-    scene.fog = new THREE.Fog( 0x72645b, 2, 15 );
+    scene.background = new THREE.Color( 0x000000 ); //0x72645b
+    //scene.fog = new THREE.Fog( 0x72645b, 2, 15 );
+}
+
+function myCamera(){
+    myWidth = container.offsetWidth;
+    myHeight = container.offsetHeight;
+    camera = new THREE.PerspectiveCamera( 35, myWidth / myHeight, 1, 1000 );
     
+    camera.position.set(1,4,5 );
+
+    camera.updateProjectionMatrix();
+    scene.add( camera );
 }
 
 function myControls () {
-    controls = new OrbitControls(camera, container);  //container  
-    controls.listenToKeyEvents( window );
+    controls = new OrbitControls(camera, canvas);  //canvas  
+    //controls.listenToKeyEvents( window );
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     controls.screenSpacePanning = false;
+    
     controls.minDistance = 2;
-    controls.maxDistance = 8;
-    controls.maxPolarAngle = Math.PI / 2;
- }
+    controls.maxDistance = 10;
+    
+    //controls.minPolarAngle=- - Math.PI/4;
+    controls.maxPolarAngle = Math.PI/2;
+    controls.minAzimuthAngle = - Math.PI/2;
+    controls.maxAzimuthAngle = Math.PI/2;
+    //controls.maxZoom = 6;
+    controls.enablePan = true;
+    controls.enableRotate = true;
+    controls.enableZoom = true;
+    controls.rotateSpeed = 0.5;
+    controls.keyPanSpeed = 20;
+    controls.panSpeed = 1;
+    controls.keys = {
+        LEFT: 'KeyA', //left arrow
+        UP: 'KeyW', // up arrow
+        RIGHT: 'KeyD', // right arrow
+        BOTTOM: 'KeyS' // down arrow
+    }
+
+    controls.target = new THREE.Vector3(1, 1, 1.25);
+    
+    controls.update();
+    
+}
 
 function myLights () {
     scene.add( new THREE.HemisphereLight( 0x443333, 0x111122 ) );
@@ -137,40 +160,31 @@ function orientationchange(event) {
     }
 }
 
-function Resize() {
-    
-    myWidth = container.offsetWidth; // offsetWidth
-    myHeight = container.offsetHeight; // offsetHeight
-    /*
-    if (oldCanvasWidth > myWidth && camera.position.y > 5.1 && camera.position.y < 9.9)  {
-        camera.position.y = camera.position.y - 0.1;
-    } 
-    if (oldCanvasWidth < myWidth && camera.position.y > 5.1 && camera.position.y < 9.9)  {
-        camera.position.y = camera.position.y + 0.1;
-    }
-    oldCanvasWidth = myWidth;
-    */
+function Resize(event) {
+    myWidth = canvas.offsetWidth; // offsetWidth
+    myHeight = canvas.offsetHeight; // offsetHeight
     if (container.width !== myWidth || container.height !== myHeight) {
-        if (window.innerWidth < 500) {
-            camera.position.set( 1,10, 1.15 );
-        } else {
-            camera.position.set( 1,5, 1.15 );
-        }
         
-        renderer.setPixelRatio( myWidth / myHeight );
+        
+        
+    }
+    renderer.setPixelRatio( myWidth / myHeight );
         renderer.setSize(myWidth, myHeight);//, false
-        //renderer.setSize( window.innerWidth, window.innerHeight );
         camera.aspect = myWidth / myHeight;
+        //camera.lookAt(scene.position);
         camera.updateProjectionMatrix();
-      }
+        
+        controls.update();
     render();
 }
 
 
 export function animate() {
+    
     requestAnimationFrame( animate );
     render();
-    controls.update();
+    
+    
     //stats1.update();
     
 }
@@ -180,5 +194,8 @@ function render() {
     //camera.position.x = Math.cos( timer ) * 3;
     //camera.position.z = Math.sin( timer ) * 3;
     //camera.lookAt( cameraTarget );
+    //camera.lookAt(scene.position);
+    camera.updateProjectionMatrix();   
+    controls.update();
     renderer.render( scene, camera );
 }

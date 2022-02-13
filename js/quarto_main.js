@@ -13,7 +13,18 @@ const raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 const game = new THREE.Object3D(0,0,0);
 
+
+const myInput = document.getElementsByClassName('webglInput')[0];
+
+myInput.onclick = function(event) {
+    console.log(event);
+  }
+
+
+
 export function main() {
+
+
     let figures = [
         'kerek_alacsony_lukas', 
         'kerek_alacsony_teli',
@@ -33,7 +44,7 @@ export function main() {
         for (let x = 0; x < 4; x++) {
             const geometry = new THREE.CylinderGeometry( 0.18, 0.18, 0.01, 32 );
             var number = Math.floor(Math.random() * 10) + 1;
-            const material = new THREE.MeshBasicMaterial( {color: Math.floor(Math.random() * 255) + 1} );
+            const material = new THREE.MeshBasicMaterial( {color: Math.floor(Math.random() * 4096) + 1} );
             const disk = new THREE.Mesh( geometry, material );
             disk.position.set( diskBase.x + (0.45 *x), diskBase.y, diskBase.z + (0.45 *y) )
             disks.add( disk );
@@ -48,11 +59,33 @@ export function main() {
     game.add(figuresLight,figuresDark,disks) //RNDCUBES.myCubes()
     game.position.set(0,0,0);
     INIT.scene.add( game, );
-    document.addEventListener( 'pointermove', onPointerMove );
+    window.addEventListener( 'pointermove', mouseInteraction ); //document window
+    window.addEventListener( 'click', mouseInteraction );
 }
 
+function mouseClick( event ) {
+    
+    let canvasBounds = INIT.renderer.domElement.getBoundingClientRect();
+    pointer.x = ( ( event.clientX - canvasBounds.left ) / ( canvasBounds.right - canvasBounds.left ) ) * 2 - 1;
+    pointer.y = - ( ( event.clientY - canvasBounds.top ) / ( canvasBounds.bottom - canvasBounds.top) ) * 2 + 1;
+    raycaster.setFromCamera(pointer, INIT.camera);
+    let intersects = raycaster.intersectObject( game, true ); //array
+    
+    if ( intersects.length > 0 ) {
+        const res = intersects.filter( function ( res ) {
+            return res && res.object;
+        } )[ 0 ];
+        if ( res && res.object ) {
+            selectedObject = res.object;
+            console.log(selectedObject);
+            
+            
+        }
+    }
+}    
 
-function onPointerMove( event ) {
+
+function mouseInteraction( event ) {
     if ( selectedObject ) {
         selectedObject.material.color.setHex( oldColor );
         selectedObject = null;
@@ -61,7 +94,7 @@ function onPointerMove( event ) {
     pointer.x = ( ( event.clientX - canvasBounds.left ) / ( canvasBounds.right - canvasBounds.left ) ) * 2 - 1;
     pointer.y = - ( ( event.clientY - canvasBounds.top ) / ( canvasBounds.bottom - canvasBounds.top) ) * 2 + 1;
     raycaster.setFromCamera( pointer, INIT.camera );
-    const intersects = raycaster.intersectObject( game, true );
+    let intersects = raycaster.intersectObject( game, true );
     if ( intersects.length > 0 ) {
         const res = intersects.filter( function ( res ) {
             return res && res.object;
@@ -70,6 +103,9 @@ function onPointerMove( event ) {
             selectedObject = res.object;
             oldColor = selectedObject.material.color.getHex();
             selectedObject.material.color.set( '#FFFFFF' );
+            if (event.type == "click") {
+                console.log(selectedObject); // JSON.stringify(selectedObject)                
+            }
         }
     }
 }
